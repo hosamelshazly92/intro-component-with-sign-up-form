@@ -1,4 +1,5 @@
-import { field } from "./Input.module.css";
+import { field, validate, red } from "./Input.module.css";
+import { Fragment } from "react";
 
 const Input = ({
   inputType,
@@ -6,18 +7,29 @@ const Input = ({
   inputValue,
   inputName,
   inputOnChange,
+  inputAlert,
+  inputOnFocus,
 }) => {
   return (
     <div>
       <input
-        className={field}
+        className={`${field} ${inputAlert ? red : {}}`}
         type={inputType}
         placeholder={inputPlaceholder}
         {...(inputName === "firstName" ? { autoFocus: true } : {})}
         value={inputValue}
         name={inputName}
         onChange={inputOnChange}
+        onFocus={inputOnFocus}
       />
+      <div className={validate}>
+        {inputAlert && (
+          <Fragment>
+            <span>Can't leave empty inputs</span>
+            <i className="fas fa-exclamation-circle"></i>
+          </Fragment>
+        )}
+      </div>
     </div>
   );
 };

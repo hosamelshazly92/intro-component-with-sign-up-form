@@ -1,8 +1,12 @@
-import { container } from "./Button.module.css";
+import { active, inactive } from "./Button.module.css";
 
-const Button = ({ children, buttonOnClick }) => {
+const Button = ({ children, buttonOnClick, state }) => {
   return (
-    <button className={container} onClick={buttonOnClick}>
+    <button
+      className={state ? inactive : active}
+      onClick={buttonOnClick}
+      {...(state ? { disabled: true } : {})}
+    >
       {children}
     </button>
   );
