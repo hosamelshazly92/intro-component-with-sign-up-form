@@ -1,0 +1,35 @@
+.container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: -2px 8px 1px rgba(0, 0, 0, 0.2);
+  padding: 56px 8%;
+  margin-top: 32px;
+}
+
+.note {
+  color: #c2c0cd;
+  font-size: 14px;
+  text-align: center;
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.higlight {
+  color: #eb7e84;
+  font-weight: 500;
+}
+
+.higlight:hover {
+  color: #d65f65;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  .note {
+    font-size: 14px;
+  }
+}
