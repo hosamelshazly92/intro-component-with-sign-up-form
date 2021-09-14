@@ -7,24 +7,13 @@ const Input = ({
   inputName,
   inputOnChange,
 }) => {
-  return inputPlaceholder === "First Name" ? (
+  return (
     <div>
       <input
         className={field}
         type={inputType}
         placeholder={inputPlaceholder}
-        autoFocus
-        value={inputValue}
-        name={inputName}
-        onChange={inputOnChange}
-      />
-    </div>
-  ) : (
-    <div>
-      <input
-        className={field}
-        type={inputType}
-        placeholder={inputPlaceholder}
+        {...(inputName === "firstName" ? { autoFocus: true } : {})}
         value={inputValue}
         name={inputName}
         onChange={inputOnChange}
