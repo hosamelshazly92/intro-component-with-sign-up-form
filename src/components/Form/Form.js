@@ -1,7 +1,8 @@
 import { container, text, higlight, note } from "./Form.module.css";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import { useState } from "react";
+import { useState, Fragment } from "react";
+import Modal from "../Modal/Modal";
 
 const Form = () => {
   const [value, setValue] = useState({
@@ -19,6 +20,8 @@ const Form = () => {
   });
 
   const [disable, setDisable] = useState(false);
+
+  const [popup, setPopup] = useState(false);
 
   const validateEmail = (email) => {
     const re =
@@ -49,8 +52,8 @@ const Form = () => {
     }
   };
 
-  console.log("password => " + value.password.length, value.password > 3);
-  console.log("disabled => " + disable);
+  // console.log("password => " + value.password.length, value.password > 3);
+  // console.log("disabled => " + disable);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -76,19 +79,7 @@ const Form = () => {
       return;
     }
 
-    setValue({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-    });
-
-    window.alert(`
-            First Name: "${value.firstName}"
-            Last Name: "${value.lastName}"
-            Email: "${value.email}"
-            Password: "***${value.password[value.password.length - 1]}"
-            `);
+    setPopup(true);
   };
 
   const handleFocus = (evt) => {
@@ -135,32 +126,44 @@ const Form = () => {
   ];
 
   return (
-    <form onSubmit={handleSubmit} className={container}>
-      {inputs.map((elm) => {
-        return (
-          <Input
-            key={elm.name}
-            inputType={elm.type}
-            inputPlaceholder={elm.placeholder}
-            inputValue={elm.value}
-            inputName={elm.name}
-            inputOnChange={handleChange}
-            inputAlert={elm.alert}
-            inputOnFocus={handleFocus}
-            inputEmail={validateEmail}
-          />
-        );
-      })}
+    <Fragment>
+      <form onSubmit={handleSubmit} className={container}>
+        {inputs.map((elm) => {
+          return (
+            <Input
+              key={elm.name}
+              inputType={elm.type}
+              inputPlaceholder={elm.placeholder}
+              inputValue={elm.value}
+              inputName={elm.name}
+              inputOnChange={handleChange}
+              inputAlert={elm.alert}
+              inputOnFocus={handleFocus}
+              inputEmail={validateEmail}
+            />
+          );
+        })}
 
-      <Button state={disable} buttonOnClick={handleSubmit}>
-        Claim Your Free Trial
-      </Button>
+        <Button state={disable} buttonOnClick={handleSubmit}>
+          Claim Your Free Trial
+        </Button>
 
-      <div className={note}>
-        <p className={text}>By clicking the button, you are agreeing to our </p>
-        <span className={higlight}>Terms and Services</span>
-      </div>
-    </form>
+        <div className={note}>
+          <p className={text}>
+            By clicking the button, you are agreeing to our{" "}
+          </p>
+          <span className={higlight}>Terms and Services</span>
+        </div>
+      </form>
+
+      {popup && (
+        <Modal
+          modalOnClick={setPopup}
+          modalValue={value}
+          modalSetValue={setValue}
+        />
+      )}
+    </Fragment>
   );
 };
 

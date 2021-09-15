@@ -5,6 +5,8 @@ import {
   container,
   red,
   green,
+  exclamation,
+  check,
 } from "./Input.module.css";
 
 const Input = ({
@@ -37,35 +39,35 @@ const Input = ({
         {inputAlert && (
           <div className={validate}>
             <span>Can't leave empty inputs</span>
-            <i className="fas fa-exclamation-circle"></i>
+            <i id={exclamation} className="fas fa-exclamation-circle"></i>
           </div>
         )}
 
         {inputName === "firstName" && inputValue.length !== 0 && (
           <div className={pass}>
             <span>Ok!</span>
-            <i className="fas fa-check-circle"></i>
+            <i id={check} className="fas fa-check-circle"></i>
           </div>
         )}
 
         {inputName === "lastName" && inputValue.length !== 0 && (
           <div className={pass}>
             <span>Ok!</span>
-            <i className="fas fa-check-circle"></i>
+            <i id={check} className="fas fa-check-circle"></i>
           </div>
         )}
 
         {inputName === "email" && inputEmail(inputValue) && (
           <div className={pass}>
             <span>Ok!</span>
-            <i className="fas fa-check-circle"></i>
+            <i id={check} className="fas fa-check-circle"></i>
           </div>
         )}
 
         {inputName === "password" && inputValue.length > 3 && (
           <div className={pass}>
             <span>Ok!</span>
-            <i className="fas fa-check-circle"></i>
+            <i id={check} className="fas fa-check-circle"></i>
           </div>
         )}
       </div>

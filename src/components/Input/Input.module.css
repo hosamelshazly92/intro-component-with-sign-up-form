@@ -57,7 +57,8 @@
   justify-content: space-between;
 }
 
-i {
+#exclamation,
+#check {
   position: relative;
   top: -50px;
   right: 32px;
@@ -72,7 +73,8 @@ i {
     font-weight: 300;
   }
 
-  i {
+  #exclamation,
+  #check {
     top: -40px;
   }
 }
