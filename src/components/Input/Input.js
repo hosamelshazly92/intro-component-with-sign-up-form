@@ -16,7 +16,7 @@ const Input = ({
   inputName,
   inputOnChange,
   inputAlert,
-  inputOnFocus,
+  // inputOnFocus,
   inputEmail,
 }) => {
   return (
@@ -33,7 +33,7 @@ const Input = ({
         value={inputValue}
         name={inputName}
         onChange={inputOnChange}
-        onFocus={inputOnFocus}
+        // onFocus={inputOnFocus}
       />
       <div className={container}>
         {inputAlert && (

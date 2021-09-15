@@ -46,10 +46,29 @@ const Form = () => {
       validateEmail(value.email) &&
       value.password.length > 2
     ) {
+      setAlert({
+        firstNameAlert:
+          value.firstName === "" ? !alert.firstNameAlert : alert.firstNameAlert,
+        lastNameAlert:
+          value.lastName === "" ? !alert.lastNameAlert : alert.lastNameAlert,
+        emailAlert: value.email === "" ? !alert.emailAlert : alert.emailAlert,
+        passwordAlert:
+          value.password === "" ? !alert.passwordAlert : alert.passwordAlert,
+      });
       setDisable(false);
     } else {
       setDisable(true);
     }
+
+    setAlert({
+      firstNameAlert:
+        evt.target.name === "firstName" ? false : alert.firstNameAlert,
+      lastNameAlert:
+        evt.target.name === "lastName" ? false : alert.lastNameAlert,
+      emailAlert: evt.target.name === "email" ? false : alert.emailAlert,
+      passwordAlert:
+        evt.target.name === "password" ? false : alert.passwordAlert,
+    });
   };
 
   // console.log("password => " + value.password.length, value.password > 3);
@@ -82,17 +101,17 @@ const Form = () => {
     setPopup(true);
   };
 
-  const handleFocus = (evt) => {
-    setAlert({
-      firstNameAlert:
-        evt.target.name === "firstName" ? false : alert.firstNameAlert,
-      lastNameAlert:
-        evt.target.name === "lastName" ? false : alert.lastNameAlert,
-      emailAlert: evt.target.name === "email" ? false : alert.emailAlert,
-      passwordAlert:
-        evt.target.name === "password" ? false : alert.passwordAlert,
-    });
-  };
+  // const handleFocus = (evt) => {
+  //   setAlert({
+  //     firstNameAlert:
+  //       evt.target.name === "firstName" ? false : alert.firstNameAlert,
+  //     lastNameAlert:
+  //       evt.target.name === "lastName" ? false : alert.lastNameAlert,
+  //     emailAlert: evt.target.name === "email" ? false : alert.emailAlert,
+  //     passwordAlert:
+  //       evt.target.name === "password" ? false : alert.passwordAlert,
+  //   });
+  // };
 
   const inputs = [
     {
@@ -138,7 +157,7 @@ const Form = () => {
               inputName={elm.name}
               inputOnChange={handleChange}
               inputAlert={elm.alert}
-              inputOnFocus={handleFocus}
+              // inputOnFocus={handleFocus}
               inputEmail={validateEmail}
             />
           );
