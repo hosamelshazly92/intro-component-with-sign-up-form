@@ -20,6 +20,12 @@ const Form = () => {
 
   const [disable, setDisable] = useState(false);
 
+  const validateEmail = (email) => {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  };
+
   const handleChange = (evt) => {
     setValue({
       firstName:
@@ -30,7 +36,21 @@ const Form = () => {
       password:
         evt.target.name === "password" ? evt.target.value : value.password,
     });
+
+    if (
+      value.firstName.length !== 0 &&
+      value.lastName.length !== 0 &&
+      validateEmail(value.email) &&
+      value.password.length > 2
+    ) {
+      setDisable(false);
+    } else {
+      setDisable(true);
+    }
   };
+
+  console.log("password => " + value.password.length, value.password > 3);
+  console.log("disabled => " + disable);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -63,7 +83,7 @@ const Form = () => {
       password: "",
     });
 
-    alert(`
+    window.alert(`
             First Name: "${value.firstName}"
             Last Name: "${value.lastName}"
             Email: "${value.email}"
@@ -127,6 +147,7 @@ const Form = () => {
             inputOnChange={handleChange}
             inputAlert={elm.alert}
             inputOnFocus={handleFocus}
+            inputEmail={validateEmail}
           />
         );
       })}

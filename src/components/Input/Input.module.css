@@ -33,10 +33,25 @@
   box-shadow: 0 0 0 3px rgb(220 60 60 / 25%);
 }
 
-.validate {
+.green {
+  border: 2px solid rgb(60, 220, 80);
+  box-shadow: 0 0 0 3px rgb(60 220 80 / 25%);
+}
+
+.container {
   font-size: 14px;
-  color: rgb(220, 60, 60);
   height: 28px;
+}
+
+.validate {
+  color: rgb(220, 60, 60);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pass {
+  color: rgb(60, 220, 80);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -58,6 +73,6 @@ i {
   }
 
   i {
-    top: -42px;
+    top: -40px;
   }
 }
