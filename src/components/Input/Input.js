@@ -19,24 +19,31 @@ const Input = ({
   inputName,
   inputOnChange,
   inputEmail,
+  inputAlert,
+  inputSetAlert,
 }) => {
   const [feedback, setFeedback] = useState(false);
-  const [alert, setAlert] = useState(false);
 
   const handleFocus = () => {
     setFeedback(true);
-    setAlert(false);
+
+    if (inputValue === "") {
+      inputSetAlert(false);
+    }
   };
 
   const handleBlur = () => {
     setFeedback(false);
-    setAlert(true);
+
+    if (inputValue === "") {
+      inputSetAlert(true);
+    }
   };
 
   return (
     <div>
       <input
-        className={`${field} ${alert ? red : {}} ${
+        className={`${field} ${inputAlert ? red : {}} ${
           inputName === "firstName" && inputValue.length !== 0 ? green : {}
         } ${inputName === "lastName" && inputValue.length !== 0 ? green : {}} ${
           inputName === "email" && inputEmail(inputValue) ? green : {}
@@ -52,7 +59,7 @@ const Input = ({
       />
       {/* empty input */}
       <div className={container}>
-        {alert && (
+        {inputAlert && (
           <div className={validate}>
             <span>Can't leave empty inputs</span>
             <i id={exclamation} className="fas fa-exclamation-circle"></i>
